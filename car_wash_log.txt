@@ -1,0 +1,6 @@
+2025-05-05 13:48:19.365512, Plate: AO1735AG, Type: Sedan, Service: Basic
+2025-05-05 13:48:45.374081, Plate: AB5467AGD, Type: SUV, Service: Premium
+2025-05-05 13:50:59.384618, Plate: AG7898AHG, Type: jeep, Service: aparat-gubka
+2025-05-05 16:22:35.254666, Plate: AO1735ag, Type: camry, Service: gupka aparat
+2025-05-05 16:23:03.821463, Plate: 234234, Type: sedan, Service: prasdf
+2025-05-28 20:04:07.278072, Plate: camry, Type: sedan, Service: basic
