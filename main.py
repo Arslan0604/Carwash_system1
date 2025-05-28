@@ -24,7 +24,7 @@ def show_all_entries():
 def menu():
     while True:
         print("\nCar Wash Tracking System")
-        print("1. Новая машина Camry you have to add")
+        print("1. Hos can I chenge it")
         print("2. Show all served cars")
         print("3. Exit")
 
