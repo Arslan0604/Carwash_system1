@@ -47,4 +47,9 @@ def menu():
 if __name__ == "__main__":
     menu()
     
+def change_code():
+    print("Arslan, you have to change the code to make it more user-friendly.")
+    # Placeholder for future improvements
+    # This function can be expanded to include more user-friendly features
+    
 # Arslan you have to change the code to make it more user-friendly
