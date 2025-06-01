@@ -4,3 +4,4 @@
 2025-05-05 16:22:35.254666, Plate: AO1735ag, Type: camry, Service: gupka aparat
 2025-05-05 16:23:03.821463, Plate: 234234, Type: sedan, Service: prasdf
 2025-05-28 20:04:07.278072, Plate: camry, Type: sedan, Service: basic
+2025-06-01 19:23:35.014096, Plate: 1735, Type: sedan, Service: basic
