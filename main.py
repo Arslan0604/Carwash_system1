@@ -46,3 +46,5 @@ def menu():
 # Run the program
 if __name__ == "__main__":
     menu()
+    
+# Arslan you have to change the code to make it more user-friendly
