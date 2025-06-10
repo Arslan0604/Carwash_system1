@@ -47,7 +47,7 @@ def export_to_excel():
                 plate = parts[1].split(": ")[1]
                 car_type = parts[2].split(": ")[1]
                 service = parts[3].split(": ")[1]
-                price_str = parts[4].split(": ")[1].replace("$", "")
+                price_str = parts[4].replace("Price: $", "")  # Fixed line
                 ws.append([date, plate, car_type, service, float(price_str)])
             except (IndexError, ValueError):
                 continue
