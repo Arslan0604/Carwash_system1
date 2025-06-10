@@ -1,62 +1,64 @@
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
 import datetime
-import csv
 import os
+from collections import defaultdict
+from openpyxl import Workbook
+import matplotlib.pyplot as plt
 
 LOG_FILE = "car_wash_log.txt"
-CSV_FILE = "car_wash_log.csv"
+EXCEL_FILE = "car_wash_log.xlsx"
 
-# Service type to price mapping
 PRICES = {
     "Basic": 10,
     "Premium": 20,
     "Deluxe": 30
 }
 
-# Add a new car entry and return the price
 def add_car_entry(plate_number, car_type, service_type):
     now = datetime.datetime.now()
     price = PRICES.get(service_type, 0)
     entry = f"{now}, Plate: {plate_number}, Type: {car_type}, Service: {service_type}, Price: ${price}\n"
-    with open(LOG_FILE, "a") as file:
+    with open(LOG_FILE, "a", encoding="utf-8") as file:
         file.write(entry)
     return price
 
-# Read all entries
 def show_all_entries():
     try:
-        with open(LOG_FILE, "r") as file:
+        with open(LOG_FILE, "r", encoding="utf-8") as file:
             return file.read()
     except FileNotFoundError:
         return "No entries found yet."
 
-# Export entries to CSV
-def export_to_csv():
+def export_to_excel():
     if not os.path.exists(LOG_FILE):
         return False
 
-    with open(LOG_FILE, "r") as log_file, open(CSV_FILE, "w", newline="") as csv_file:
-        writer = csv.writer(csv_file)
-        writer.writerow(["Date", "Plate", "Car Type", "Service Type", "Price"])
-        for line in log_file:
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Car Wash Log"
+    ws.append(["Date", "Plate", "Car Type", "Service Type", "Price"])
+
+    with open(LOG_FILE, "r", encoding="utf-8") as file:
+        for line in file:
             try:
                 parts = line.strip().split(", ")
                 date = parts[0]
                 plate = parts[1].split(": ")[1]
                 car_type = parts[2].split(": ")[1]
                 service = parts[3].split(": ")[1]
-                price = parts[4].split(": ")[1]
-                writer.writerow([date, plate, car_type, service, price])
-            except IndexError:
+                price_str = parts[4].split(": ")[1].replace("$", "")
+                ws.append([date, plate, car_type, service, float(price_str)])
+            except (IndexError, ValueError):
                 continue
+
+    wb.save(EXCEL_FILE)
     return True
 
-# Calculate total earnings
 def calculate_total_earnings():
     total = 0
     try:
-        with open(LOG_FILE, "r") as file:
+        with open(LOG_FILE, "r", encoding="utf-8") as file:
             for line in file:
                 if "Price: $" in line:
                     try:
@@ -68,38 +70,90 @@ def calculate_total_earnings():
     except FileNotFoundError:
         return 0
 
-# GUI Class
+def calculate_earnings_by_period(start_date=None, end_date=None):
+    daily = defaultdict(float)
+    weekly = defaultdict(float)
+    monthly = defaultdict(float)
+
+    try:
+        with open(LOG_FILE, "r", encoding="utf-8") as file:
+            for line in file:
+                if "Price: $" in line:
+                    try:
+                        parts = line.strip().split(", ")
+                        date_str = parts[0]
+                        price_str = parts[4].split("Price: $")[1]
+                        price = float(price_str)
+                        date = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f")
+
+                        if start_date and date < start_date:
+                            continue
+                        if end_date and date > end_date:
+                            continue
+
+                        daily[date.strftime("%Y-%m-%d")] += price
+                        weekly[f"{date.year}-W{date.isocalendar().week}"] += price
+                        monthly[date.strftime("%Y-%m")] += price
+                    except (IndexError, ValueError):
+                        continue
+    except FileNotFoundError:
+        pass
+
+    return daily, weekly, monthly
+
+def plot_daily_earnings(daily_earnings):
+    if not daily_earnings:
+        messagebox.showinfo("No Data", "No earnings data to plot.")
+        return
+
+    dates = sorted(daily_earnings.keys())
+    values = [daily_earnings[d] for d in dates]
+
+    plt.figure(figsize=(10, 5))
+    plt.bar(dates, values, color="skyblue")
+    plt.xlabel("Date")
+    plt.ylabel("Earnings ($)")
+    plt.title("Daily Car Wash Earnings")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+
 class CarWashApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Car Wash System with Pricing & CSV Export")
-        self.root.geometry("520x580")
+        self.root.title("Car Wash System with Excel Export & Charts")
+        self.root.geometry("540x740")
 
         tk.Label(root, text="🚗 Car Wash Entry", font=("Arial", 16)).pack(pady=10)
 
-        # Plate Number
         tk.Label(root, text="License Plate:").pack()
         self.plate_entry = tk.Entry(root)
         self.plate_entry.pack()
 
-        # Car Type
         tk.Label(root, text="Car Type (Sedan, SUV, etc.):").pack()
         self.car_type_entry = tk.Entry(root)
         self.car_type_entry.pack()
 
-        # Service Type Dropdown
         tk.Label(root, text="Service Type:").pack()
-        self.service_type = tk.StringVar()
-        self.service_type.set("Basic")
+        self.service_type = tk.StringVar(value="Basic")
         tk.OptionMenu(root, self.service_type, *PRICES.keys()).pack()
 
-        # Buttons
         tk.Button(root, text="Add Entry", command=self.handle_add_entry).pack(pady=10)
         tk.Button(root, text="Show All Entries", command=self.handle_show_entries).pack()
-        tk.Button(root, text="Export to CSV", command=self.handle_export_csv).pack(pady=5)
+        tk.Button(root, text="Export to Excel", command=self.handle_export_excel).pack(pady=5)
         tk.Button(root, text="Show Total Earnings", command=self.handle_total_earnings).pack(pady=5)
 
-        # Output Box
+        tk.Label(root, text="Start Date (YYYY-MM-DD):").pack()
+        self.start_date_entry = tk.Entry(root)
+        self.start_date_entry.pack()
+
+        tk.Label(root, text="End Date (YYYY-MM-DD):").pack()
+        self.end_date_entry = tk.Entry(root)
+        self.end_date_entry.pack()
+
+        tk.Button(root, text="Show Earnings by Period", command=self.handle_period_earnings).pack(pady=5)
+        tk.Button(root, text="Plot Daily Earnings", command=self.handle_plot_chart).pack(pady=5)
+
         self.output_text = scrolledtext.ScrolledText(root, width=60, height=15)
         self.output_text.pack(pady=10)
 
@@ -121,10 +175,9 @@ class CarWashApp:
         self.output_text.delete(1.0, tk.END)
         self.output_text.insert(tk.END, log)
 
-    def handle_export_csv(self):
-        success = export_to_csv()
-        if success:
-            messagebox.showinfo("Export Complete", f"Data exported to {CSV_FILE}")
+    def handle_export_excel(self):
+        if export_to_excel():
+            messagebox.showinfo("Export Complete", f"Data exported to {EXCEL_FILE}")
         else:
             messagebox.showerror("Error", "No entries to export.")
 
@@ -132,12 +185,47 @@ class CarWashApp:
         total = calculate_total_earnings()
         messagebox.showinfo("Total Earnings", f"Total income from services: ${total:.2f}")
 
+    def handle_period_earnings(self):
+        start, end = self.start_date_entry.get().strip(), self.end_date_entry.get().strip()
+        try:
+            start_date = datetime.datetime.strptime(start, "%Y-%m-%d") if start else None
+            end_date = datetime.datetime.strptime(end, "%Y-%m-%d") + datetime.timedelta(days=1) if end else None
+        except ValueError:
+            messagebox.showerror("Date Format Error", "Please use YYYY-MM-DD format.")
+            return
+
+        daily, weekly, monthly = calculate_earnings_by_period(start_date, end_date)
+        self.output_text.delete(1.0, tk.END)
+
+        self.output_text.insert(tk.END, "📅 Daily Earnings:\n")
+        for day, total in sorted(daily.items()):
+            self.output_text.insert(tk.END, f"{day}: ${total:.2f}\n")
+
+        self.output_text.insert(tk.END, "\n🗓 Weekly Earnings:\n")
+        for week, total in sorted(weekly.items()):
+            self.output_text.insert(tk.END, f"{week}: ${total:.2f}\n")
+
+        self.output_text.insert(tk.END, "\n📆 Monthly Earnings:\n")
+        for month, total in sorted(monthly.items()):
+            self.output_text.insert(tk.END, f"{month}: ${total:.2f}\n")
+
+    def handle_plot_chart(self):
+        start, end = self.start_date_entry.get().strip(), self.end_date_entry.get().strip()
+        try:
+            start_date = datetime.datetime.strptime(start, "%Y-%m-%d") if start else None
+            end_date = datetime.datetime.strptime(end, "%Y-%m-%d") + datetime.timedelta(days=1) if end else None
+        except ValueError:
+            messagebox.showerror("Date Format Error", "Please use YYYY-MM-DD format.")
+            return
+
+        daily, _, _ = calculate_earnings_by_period(start_date, end_date)
+        plot_daily_earnings(daily)
+
     def clear_entries(self):
         self.plate_entry.delete(0, tk.END)
         self.car_type_entry.delete(0, tk.END)
         self.service_type.set("Basic")
 
-# Run the app
 if __name__ == "__main__":
     root = tk.Tk()
     app = CarWashApp(root)

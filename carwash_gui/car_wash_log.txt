@@ -1,3 +1,5 @@
 2025-06-06 17:00:22.723554, Plate: 1768, Type: sedan, Service: Basic, Price: $10
 2025-06-06 17:01:02.671642, Plate: 3298, Type: camry, Service: Deluxe, Price: $30
 2025-06-06 17:01:49.245993, Plate: 1289, Type: Hilux, Service: Premium, Price: $20
+2025-06-10 21:48:57.947170, Plate: 1735, Type: Camry, Service: Basic, Price: $10
+2025-06-10 21:51:20.041363, Plate: AO1735AG, Type: Barbados, Service: Deluxe, Price: $30
