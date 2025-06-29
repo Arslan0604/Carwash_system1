@@ -144,16 +144,16 @@ class CarWashApp:
         tk.Button(root, text="Выгрузить в Excel", command=self.handle_export_excel).pack(pady=5)
         tk.Button(root, text="Показать общий заработок", command=self.handle_total_earnings).pack(pady=5)
 
-        tk.Label(root, text="Начало (YYYY-MM-DD):").pack()
+        tk.Label(root, text="Начало периода (YYYY-MM-DD):").pack()
         self.start_date_entry = tk.Entry(root)
         self.start_date_entry.pack()
 
-        tk.Label(root, text="End Date (YYYY-MM-DD):").pack()
+        tk.Label(root, text="Конец периода (YYYY-MM-DD):").pack()
         self.end_date_entry = tk.Entry(root)
         self.end_date_entry.pack()
 
-        tk.Button(root, text="Show Earnings by Period", command=self.handle_period_earnings).pack(pady=5)
-        tk.Button(root, text="Plot Daily Earnings", command=self.handle_plot_chart).pack(pady=5)
+        tk.Button(root, text="Показать доходы по периодам", command=self.handle_period_earnings).pack(pady=5)
+        tk.Button(root, text="Диограмма ежедневного заробока", command=self.handle_plot_chart).pack(pady=5)
 
         self.output_text = scrolledtext.ScrolledText(root, width=60, height=15)
         self.output_text.pack(pady=10)
