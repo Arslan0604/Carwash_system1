@@ -48,7 +48,7 @@ def export_to_excel():
                 plate = parts[1].split(": ")[1]
                 car_type = parts[2].split(": ")[1]
                 service = parts[3].split(": ")[1]
-                price_str = parts[4].replace("Price: $", "")  # Fixed line
+                price_str = parts[4].replace("Price: ", "")  # Fixed line
                 ws.append([date, plate, car_type, service, float(price_str)])
             except (IndexError, ValueError):
                 continue
@@ -61,9 +61,9 @@ def calculate_total_earnings():
     try:
         with open(LOG_FILE, "r", encoding="utf-8") as file:
             for line in file:
-                if "Price: $" in line:
+                if "Price: " in line:
                     try:
-                        price_str = line.strip().split("Price: m")[1]
+                        price_str = line.strip().split("Price: ")[1]
                         total += float(price_str)
                     except (IndexError, ValueError):
                         continue
