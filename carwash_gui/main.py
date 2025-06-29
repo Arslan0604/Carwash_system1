@@ -139,10 +139,10 @@ class CarWashApp:
         self.service_type = tk.StringVar(value="Вид работ")
         tk.OptionMenu(root, self.service_type, *PRICES.keys()).pack()
 
-        tk.Button(root, text="Add Entry", command=self.handle_add_entry).pack(pady=10)
-        tk.Button(root, text="Show All Entries", command=self.handle_show_entries).pack()
-        tk.Button(root, text="Export to Excel", command=self.handle_export_excel).pack(pady=5)
-        tk.Button(root, text="Show Total Earnings", command=self.handle_total_earnings).pack(pady=5)
+        tk.Button(root, text="Добавить", command=self.handle_add_entry).pack(pady=10)
+        tk.Button(root, text="Просмотр всех добавленных", command=self.handle_show_entries).pack()
+        tk.Button(root, text="Выгрузить в Excel", command=self.handle_export_excel).pack(pady=5)
+        tk.Button(root, text="Показать общий заработок", command=self.handle_total_earnings).pack(pady=5)
 
         tk.Label(root, text="Start Date (YYYY-MM-DD):").pack()
         self.start_date_entry = tk.Entry(root)
