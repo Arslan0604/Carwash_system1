@@ -10,10 +10,10 @@ LOG_FILE = "car_wash_log.txt"
 EXCEL_FILE = "car_wash_log.xlsx"
 
 PRICES = {
-    "Ici-dashy": 50,
+    "Içi-daşy": 50,
     "Gubka-aprat": 30,
-    "Dashy": 30,
-    "Ici": 20 
+    "Daşy": 30,
+    "Içi": 20 
 }
 
 def add_car_entry(plate_number, car_type, service_type):
