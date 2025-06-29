@@ -15,3 +15,5 @@ PRICES = {
     "Daşy": 30,
     "Içi": 20 
 }
+
+# now you have to start to do that only in english 
