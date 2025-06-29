@@ -125,7 +125,7 @@ class CarWashApp:
         self.root.title("Система управления мойкой машин район 3 школы")
         self.root.geometry("540x740")
 
-        tk.Label(root, text="\ud83d\ude97 Крутая мойка машин", font=("Arial", 16)).pack(pady=10)
+        tk.Label(root, text="Крутая мойка машин", font=("Arial", 16)).pack(pady=10)
 
         tk.Label(root, text="Номер машины:").pack()
         self.plate_entry = tk.Entry(root)
