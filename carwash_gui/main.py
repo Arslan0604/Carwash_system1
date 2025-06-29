@@ -125,18 +125,18 @@ class CarWashApp:
         self.root.title("Система управления мойкой машин район 3 школы")
         self.root.geometry("540x740")
 
-        tk.Label(root, text="🚗 Mashin yulanyan systema", font=("Arial", 16)).pack(pady=10)
+        tk.Label(root, text="🚗 Крутая мойка машин", font=("Arial", 16)).pack(pady=10)
 
-        tk.Label(root, text="Machine nomer:").pack()
+        tk.Label(root, text="Номер машины:").pack()
         self.plate_entry = tk.Entry(root)
         self.plate_entry.pack()
 
-        tk.Label(root, text="Machine (Djeep, sedan, etc.):").pack()
+        tk.Label(root, text="Модель машины (Djeep, sedan, etc.):").pack()
         self.car_type_entry = tk.Entry(root)
         self.car_type_entry.pack()
 
-        tk.Label(root, text="Ediljek ishi:").pack()
-        self.service_type = tk.StringVar(value="Ishin gornushi")
+        tk.Label(root, text="Вид обслуживание:").pack()
+        self.service_type = tk.StringVar(value="Вид работ")
         tk.OptionMenu(root, self.service_type, *PRICES.keys()).pack()
 
         tk.Button(root, text="Add Entry", command=self.handle_add_entry).pack(pady=10)
