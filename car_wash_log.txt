@@ -6,3 +6,4 @@
 2025-05-28 20:04:07.278072, Plate: camry, Type: sedan, Service: basic
 2025-06-01 19:23:35.014096, Plate: 1735, Type: sedan, Service: basic
 2025-06-10 21:46:49.681450, Plate: 2323, Type: sedan , Service: basic
+2025-06-24 10:19:52.745973, Plate: 4343, Type: camry, Service: premium

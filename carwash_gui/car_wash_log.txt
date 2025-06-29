@@ -5,3 +5,7 @@
 2025-06-10 21:51:20.041363, Plate: AO1735AG, Type: Barbados, Service: Deluxe, Price: $30
 2025-06-10 22:13:08.757670, Plate: 32342, Type: djeep, Service: Premium, Price: $20
 2025-06-10 22:13:53.773825, Plate: 7878, Type: larva, Service: Premium, Price: $20
+2025-06-12 15:00:25.671491, Plate: 3232, Type: Palta, Service: Deluxe, Price: $30
+2025-06-19 20:28:13.679941, Plate: 1735, Type: Camry, Service: Premium, Price: $20
+2025-06-24 10:34:23.270902, Plate: 3232, Type: camry, Service: Dashy, Price: $30
+2025-06-24 10:35:06.104817, Plate: aqwedf, Type: qwe, Service: Gubka-aprat, Price: m30

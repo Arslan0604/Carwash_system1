@@ -10,15 +10,16 @@ LOG_FILE = "car_wash_log.txt"
 EXCEL_FILE = "car_wash_log.xlsx"
 
 PRICES = {
-    "Basic": 10,
-    "Premium": 20,
-    "Deluxe": 30
+    "Ici-dashy": 50,
+    "Gubka-aprat": 30,
+    "Dashy": 30,
+    "Ici": 20 
 }
 
 def add_car_entry(plate_number, car_type, service_type):
     now = datetime.datetime.now()
     price = PRICES.get(service_type, 0)
-    entry = f"{now}, Plate: {plate_number}, Type: {car_type}, Service: {service_type}, Price: ${price}\n"
+    entry = f"{now}, Plate: {plate_number}, Type: {car_type}, Service: {service_type}, Price: m{price}\n"
     with open(LOG_FILE, "a", encoding="utf-8") as file:
         file.write(entry)
     return price
@@ -62,7 +63,7 @@ def calculate_total_earnings():
             for line in file:
                 if "Price: $" in line:
                     try:
-                        price_str = line.strip().split("Price: $")[1]
+                        price_str = line.strip().split("Price: m")[1]
                         total += float(price_str)
                     except (IndexError, ValueError):
                         continue
@@ -78,20 +79,20 @@ def calculate_earnings_by_period(start_date=None, end_date=None):
     try:
         with open(LOG_FILE, "r", encoding="utf-8") as file:
             for line in file:
-                if "Price: $" in line:
+                if "Price: m" in line:
                     try:
                         parts = line.strip().split(", ")
                         date_str = parts[0]
-                        price_str = parts[4].split("Price: $")[1]
+                        price_str = parts[4].split("Price: m")[1]
                         price = float(price_str)
-                        date = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f")
+                        date = datetime.datetime.strptime(date_str, "%d-%m-%Y %H:%M:%S.%f")
 
                         if start_date and date < start_date:
                             continue
                         if end_date and date > end_date:
                             continue
 
-                        daily[date.strftime("%Y-%m-%d")] += price
+                        daily[date.strftime("%d-%m-%Y")] += price
                         weekly[f"{date.year}-W{date.isocalendar().week}"] += price
                         monthly[date.strftime("%Y-%m")] += price
                     except (IndexError, ValueError):
@@ -121,21 +122,21 @@ def plot_daily_earnings(daily_earnings):
 class CarWashApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Car Wash System with Excel Export & Charts")
+        self.root.title("Machin System Excel Export & Charts")
         self.root.geometry("540x740")
 
-        tk.Label(root, text="🚗 Car Wash Entry", font=("Arial", 16)).pack(pady=10)
+        tk.Label(root, text="🚗 Mashin yulanyan systema", font=("Arial", 16)).pack(pady=10)
 
-        tk.Label(root, text="License Plate:").pack()
+        tk.Label(root, text="Machine nomer:").pack()
         self.plate_entry = tk.Entry(root)
         self.plate_entry.pack()
 
-        tk.Label(root, text="Car Type (Sedan, SUV, etc.):").pack()
+        tk.Label(root, text="Machine (Djeep, sedan, etc.):").pack()
         self.car_type_entry = tk.Entry(root)
         self.car_type_entry.pack()
 
-        tk.Label(root, text="Service Type:").pack()
-        self.service_type = tk.StringVar(value="Basic")
+        tk.Label(root, text="Ediljek ishi:").pack()
+        self.service_type = tk.StringVar(value="Ishin gornushi")
         tk.OptionMenu(root, self.service_type, *PRICES.keys()).pack()
 
         tk.Button(root, text="Add Entry", command=self.handle_add_entry).pack(pady=10)
