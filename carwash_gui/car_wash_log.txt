@@ -10,3 +10,4 @@
 2025-06-24 10:34:23.270902, Plate: 3232, Type: camry, Service: Dashy, Price: $30
 2025-06-24 10:35:06.104817, Plate: aqwedf, Type: qwe, Service: Gubka-aprat, Price: m30
 2025-06-29 19:33:30.328382, Plate: 1289, Type: camry, Service: Içi, Price: m20
+2025-06-29 19:42:02.556065, Plate: 4343, Type: camry, Service: Içi-daşy, Price: m50

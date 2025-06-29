@@ -79,11 +79,11 @@ def calculate_earnings_by_period(start_date=None, end_date=None):
     try:
         with open(LOG_FILE, "r", encoding="utf-8") as file:
             for line in file:
-                if "Price: m" in line:
+                if "Price: " in line:
                     try:
                         parts = line.strip().split(", ")
                         date_str = parts[0]
-                        price_str = parts[4].split("Price: m")[1]
+                        price_str = parts[4].split("Price: ")[1]
                         price = float(price_str)
                         date = datetime.datetime.strptime(date_str, "%d-%m-%Y %H:%M:%S.%f")
 
@@ -113,7 +113,7 @@ def plot_daily_earnings(daily_earnings):
     plt.figure(figsize=(10, 5))
     plt.bar(dates, values, color="skyblue")
     plt.xlabel("Date")
-    plt.ylabel("Earnings ($)")
+    plt.ylabel("Earnings (m)")
     plt.title("Daily Car Wash Earnings")
     plt.xticks(rotation=45)
     plt.tight_layout()
@@ -225,7 +225,7 @@ class CarWashApp:
     def clear_entries(self):
         self.plate_entry.delete(0, tk.END)
         self.car_type_entry.delete(0, tk.END)
-        self.service_type.set("Basic")
+        self.service_type.set("Вид работ")
 
 if __name__ == "__main__":
     root = tk.Tk()
