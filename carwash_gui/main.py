@@ -122,7 +122,7 @@ def plot_daily_earnings(daily_earnings):
 class CarWashApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Machin System Excel Export & Charts")
+        self.root.title("Система управления мойкой машин район 3 школы")
         self.root.geometry("540x740")
 
         tk.Label(root, text="🚗 Mashin yulanyan systema", font=("Arial", 16)).pack(pady=10)
