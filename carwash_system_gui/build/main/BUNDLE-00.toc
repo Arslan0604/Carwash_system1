@@ -1,0 +1,3 @@
+([('main',
+   '/Users/macbookpro/Desktop/Carwash_system1/carwash_system_gui/dist/main',
+   'EXECUTABLE')],)

@@ -1,3 +1,5 @@
 29-06-2025 20:30:50.908713, Plate: 3232, Type: camry, Service: Içi-daşy, Price: 50
 29-06-2025 20:31:15.464696, Plate: 1212, Type: tiktok, Service: Daşy, Price: 30
 2025-06-29 20:42:22.697879, Plate: 2323, Type: lexus, Service: Içi-daşy, Price: 50
+2025-07-01 19:43:51.470383, Plate: 2323, Type: arslan, Service: Içi-daşy, Price: 50
+2025-07-01 19:44:20.933462, Plate: 2323, Type: jonny, Service: Içi, Price: 20
