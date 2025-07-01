@@ -12,8 +12,8 @@ EXCEL_FILE = "car_wash_log.xlsx"
 
 
 PRICES = {
-    "I\u00e7i-da\u015fy": 50,
+    "Içi-Daşy": 50,
     "Gubka-aprat": 30,
-    "Da\u015fy": 30,
-    "I\u00e7i": 20 
+    "Daşy": 30,
+    "Içi": 20 
 }
