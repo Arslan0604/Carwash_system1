@@ -3,3 +3,4 @@
 2025-06-29 20:42:22.697879, Plate: 2323, Type: lexus, Service: Içi-daşy, Price: 50
 2025-07-01 19:43:51.470383, Plate: 2323, Type: arslan, Service: Içi-daşy, Price: 50
 2025-07-01 19:44:20.933462, Plate: 2323, Type: jonny, Service: Içi, Price: 20
+2025-07-01 19:52:15.715620, Plate: 3232, Type: lako, Service: Gubka-aprat, Price: 30
