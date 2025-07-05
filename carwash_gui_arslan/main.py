@@ -35,3 +35,9 @@ def show_all_entries():
 def export_to_excel():
     if not os.path.exists(LOG_FILE):
         return False
+    
+    
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Car Wash Log"
+    ws.append(["Date", "Plate", "Car Type", "Service Type", "Price"])
