@@ -57,3 +57,18 @@ def export_to_excel():
 
     wb.save(EXCEL_FILE)
     return True
+
+def calculate_total_earnings():
+    total = 0
+    try:
+        with open(LOG_FILE, "r", encoding="utf-8") as file:
+            for line in file:
+                if "Price: " in line:
+                    try:
+                        price_str = line.strip().split("Price: ")[1]
+                        total += float(price_str)
+                    except (IndexError, ValueError):
+                        continue
+        return total
+    except FileNotFoundError:
+        return 0
