@@ -41,3 +41,19 @@ def export_to_excel():
     ws = wb.active
     ws.title = "Car Wash Log"
     ws.append(["Date", "Plate", "Car Type", "Service Type", "Price"])
+    
+    with open(LOG_FILE, "r", encoding="utf-8") as file:
+        for line in file:
+            try:
+                parts = line.strip().split(", ")
+                date = parts[0]
+                plate = parts[1].split(": ")[1]
+                car_type = parts[2].split(": ")[1]
+                service = parts[3].split(": ")[1]
+                price_str = parts[4].replace("Price: ", "")  # Fixed line
+                ws.append([date, plate, car_type, service, float(price_str)])
+            except (IndexError, ValueError):
+                continue
+
+    wb.save(EXCEL_FILE)
+    return True
