@@ -85,9 +85,11 @@ def calculate_earnings_by_period(start_date=None, end_date=None):
                     try:
                         parts = line.strip().split(", ")
                         date_str = parts[0]
-                        price_str = parts[4].split("Price: ")[1]
+                        price_str = parts[-1].split("Price: ")[1].lstrip("m")  # Remove optional "m" prefix
                         price = float(price_str)
-                        date = datetime.datetime.strptime(date_str, "%d-%m-%Y %H:%M:%S.%f")
+
+                        # Fix: match correct format of the datetime string
+                        date = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S.%f")
 
                         if start_date and date < start_date:
                             continue
@@ -95,8 +97,9 @@ def calculate_earnings_by_period(start_date=None, end_date=None):
                             continue
 
                         daily[date.strftime("%d-%m-%Y")] += price
-                        weekly[f"{date.year}-W{date.isocalendar().week}"] += price
+                        weekly[f"{date.year}-W{date.isocalendar()[1]}"] += price
                         monthly[date.strftime("%Y-%m")] += price
+
                     except (IndexError, ValueError):
                         continue
     except FileNotFoundError:
