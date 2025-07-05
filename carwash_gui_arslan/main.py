@@ -72,3 +72,34 @@ def calculate_total_earnings():
         return total
     except FileNotFoundError:
         return 0
+    
+def calculate_earnings_by_period(start_date=None, end_date=None):
+    daily = defaultdict(float)
+    weekly = defaultdict(float)
+    monthly = defaultdict(float)
+
+    try:
+        with open(LOG_FILE, "r", encoding="utf-8") as file:
+            for line in file:
+                if "Price: " in line:
+                    try:
+                        parts = line.strip().split(", ")
+                        date_str = parts[0]
+                        price_str = parts[4].split("Price: ")[1]
+                        price = float(price_str)
+                        date = datetime.datetime.strptime(date_str, "%d-%m-%Y %H:%M:%S.%f")
+
+                        if start_date and date < start_date:
+                            continue
+                        if end_date and date > end_date:
+                            continue
+
+                        daily[date.strftime("%d-%m-%Y")] += price
+                        weekly[f"{date.year}-W{date.isocalendar().week}"] += price
+                        monthly[date.strftime("%Y-%m")] += price
+                    except (IndexError, ValueError):
+                        continue
+    except FileNotFoundError:
+        pass
+
+    return daily, weekly, monthly
