@@ -31,3 +31,7 @@ def show_all_entries():
             return file.read()
     except FileNotFoundError:
         return "No entries found yet."
+    
+def export_to_excel():
+    if not os.path.exists(LOG_FILE):
+        return False
