@@ -11,7 +11,7 @@ LOG_FILE = "car_wash_log.txt"
 EXCEL_FILE = "car_wash_log.xlsx"
 
 
-PRICES = {
+PRICES = {  
     "Içi-Daşy": 50,
     "Gubka-aprat": 30,
     "Daşy": 30,
