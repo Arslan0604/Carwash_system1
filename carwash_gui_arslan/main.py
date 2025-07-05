@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 LOG_FILE = "car_wash_log.txt"
 EXCEL_FILE = "car_wash_log.xlsx"
-
+# how to use all this 
 
 PRICES = {  
     "Içi-Daşy": 50,
