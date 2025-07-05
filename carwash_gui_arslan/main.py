@@ -5,7 +5,7 @@ import os
 from collections import defaultdict
 from openpyxl import Workbook
 import matplotlib.pyplot as plt
-
+# have to start in here this project 
 
 LOG_FILE = "car_wash_log.txt"
 EXCEL_FILE = "car_wash_log.xlsx"
