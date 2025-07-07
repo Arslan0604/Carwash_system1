@@ -136,3 +136,7 @@ class CarWashApp:
         tk.Label(root, text="Номер машины:").pack()
         self.plate_entry = tk.Entry(root)
         self.plate_entry.pack()
+        
+        tk.Label(root, text="Модель машины (Djeep, sedan etc.):").pack()
+        self.car_type_entry = tk.Entry(root)
+        self.car_type_entry.pack()
