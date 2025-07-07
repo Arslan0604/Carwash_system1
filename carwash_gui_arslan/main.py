@@ -149,3 +149,7 @@ class CarWashApp:
         tk.Button(root, text="Просмотр всех добавленных", command=self.handle_show_entries).pack()
         tk.Button(root, text="Выгрузить в Excel", command=self.handle_export_excel).pack(pady=5)
         tk.Button(root, text="Показать общий заработок", command=self.handle_total_earnings).pack(pady=5)
+        
+        tk.Label(root, text="Начало периода (YYYY-MM-DD):").pack()
+        self.start_date_entry = tk.Entry(root)
+        self.start_date_entry.pack()
