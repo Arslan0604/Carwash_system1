@@ -114,3 +114,13 @@ def plot_daily_earnings(daily_earnings):
     
     dates = sorted(daily_earnings.keys())
     values = [daily_earnings[d] for d in dates]
+    
+    
+    plt.figure(figsize=(10, 5))
+    plt.bar(dates, values, color="skyblue")
+    plt.xlabel("Date")
+    plt.ylabel("Earnings (m)")
+    plt.title("Daily Car Wash Earnings")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
