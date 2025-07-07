@@ -153,3 +153,7 @@ class CarWashApp:
         tk.Label(root, text="Начало периода (YYYY-MM-DD):").pack()
         self.start_date_entry = tk.Entry(root)
         self.start_date_entry.pack()
+        
+        tk.Label(root, text="Конец периода (YYYY-MM-DD):").pack()
+        self.end_date_entry = tk.Entry(root)
+        self.end_date_entry.pack()
