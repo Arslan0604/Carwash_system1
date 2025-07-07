@@ -140,3 +140,7 @@ class CarWashApp:
         tk.Label(root, text="Модель машины (Djeep, sedan etc.):").pack()
         self.car_type_entry = tk.Entry(root)
         self.car_type_entry.pack()
+        
+        tk.Label(root, text="Виды обслуживание:").pack()
+        self.service_type = tk.StringVar(value="Вид работ")
+        tk.OptionMenu(root, self.service_type, *PRICES.keys()).pack()
