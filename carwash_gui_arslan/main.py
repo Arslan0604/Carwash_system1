@@ -111,3 +111,6 @@ def plot_daily_earnings(daily_earnings):
     if not daily_earnings:
         messagebox.showinfo("No Data", "No earnings data to plot.")
         return
+    
+    dates = sorted(daily_earnings.keys())
+    values = [daily_earnings[d] for d in dates]
