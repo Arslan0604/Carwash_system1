@@ -144,3 +144,8 @@ class CarWashApp:
         tk.Label(root, text="Виды обслуживание:").pack()
         self.service_type = tk.StringVar(value="Вид работ")
         tk.OptionMenu(root, self.service_type, *PRICES.keys()).pack()
+        
+        tk.Button(root, text="Добавить", command=self.handle_add_entry).pack(pady=10)
+        tk.Button(root, text="Просмотр всех добавленных", command=self.handle_show_entries).pack()
+        tk.Button(root, text="Выгрузить в Excel", command=self.handle_export_excel).pack(pady=5)
+        tk.Button(root, text="Показать общий заработок", command=self.handle_total_earnings).pack(pady=5)
