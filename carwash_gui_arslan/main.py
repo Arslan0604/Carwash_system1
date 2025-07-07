@@ -157,3 +157,6 @@ class CarWashApp:
         tk.Label(root, text="Конец периода (YYYY-MM-DD):").pack()
         self.end_date_entry = tk.Entry(root)
         self.end_date_entry.pack()
+        
+        tk.Button(root, text="Показать доходы по периодам", command=self.handle_period_earnings).pack(pady=5)
+        tk.Button(root, text="Диограмма ежедневного заробока", command=self.handle_plot_chart).pack(pady=5)
