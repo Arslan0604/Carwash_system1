@@ -160,3 +160,7 @@ class CarWashApp:
         
         tk.Button(root, text="Показать доходы по периодам", command=self.handle_period_earnings).pack(pady=5)
         tk.Button(root, text="Диограмма ежедневного заробока", command=self.handle_plot_chart).pack(pady=5)
+        
+        self.output_text = scrolledtext.ScrolledText(root, width=60, height=15)
+        self.output_text.pack(pady=10)
+
