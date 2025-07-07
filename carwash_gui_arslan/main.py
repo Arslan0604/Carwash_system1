@@ -124,3 +124,9 @@ def plot_daily_earnings(daily_earnings):
     plt.xticks(rotation=45)
     plt.tight_layout()
     plt.show()
+    
+class CarWashApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Система управления мойкой машин район 3 школы")
+        self.root.geometry("540x740")
