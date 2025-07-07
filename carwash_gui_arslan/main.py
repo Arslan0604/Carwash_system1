@@ -106,3 +106,8 @@ def calculate_earnings_by_period(start_date=None, end_date=None):
         pass
 
     return daily, weekly, monthly
+
+def plot_daily_earnings(daily_earnings):
+    if not daily_earnings:
+        messagebox.showinfo("No Data", "No earnings data to plot.")
+        return
