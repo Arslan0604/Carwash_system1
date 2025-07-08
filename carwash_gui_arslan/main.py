@@ -187,3 +187,7 @@ class CarWashApp:
             messagebox.showinfo("Export Complete", f"Data exported to {EXCEL_FILE}")
         else:
             messagebox.showerror("Error", "No entries to export.")
+            
+    def handle_total_earnings(self):
+        total = calculate_total_earnings()
+        messagebox.showinfo("Total Earnings", f"Total income from services: {total:.2f}")
