@@ -163,4 +163,9 @@ class CarWashApp:
         
         self.output_text = scrolledtext.ScrolledText(root, width=60, height=15)
         self.output_text.pack(pady=10)
+        
+    def handle_add_entry(self):
+        plate = self.plate_entry.get().strip()
+        car_type = self.car_type_entry.get().strip()
+        service = self.service_type.get()
 
