@@ -191,3 +191,12 @@ class CarWashApp:
     def handle_total_earnings(self):
         total = calculate_total_earnings()
         messagebox.showinfo("Total Earnings", f"Total income from services: {total:.2f}")
+        
+    def handle_period_earnings(self):
+        start, end = self.start_date_entry.get().strip(), self.end_date_entry.get().strip()
+        try:
+            start_date = datetime.datetime.strptime(start, "%Y-%m-%d") if start else None
+            end_date = datetime.datetime.strptime(end, "%Y-%m-%d") + datetime.timedelta(days=1) if end else None
+        except ValueError:
+            messagebox.showerror("Date Format Error", "Please use YYYY-MM-DD format.")
+            return
