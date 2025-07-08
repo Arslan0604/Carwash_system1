@@ -172,4 +172,8 @@ class CarWashApp:
         if not plate or not car_type:
             messagebox.showwarning("Input Error", "Please fill in all fields.")
             return
+        
+        price = add_car_entry(plate, car_type, service)
+        messagebox.showinfo("Success", f"Car entry added.\nService cost: {price}")
+        self.clear_entries()
 
