@@ -181,3 +181,9 @@ class CarWashApp:
         log = show_all_entries()
         self.output_text.delete(1.0, tk.END)
         self.output_text.insert(tk.END, log)
+        
+    def handle_export_excel(self):
+        if export_to_excel():
+            messagebox.showinfo("Export Complete", f"Data exported to {EXCEL_FILE}")
+        else:
+            messagebox.showerror("Error", "No entries to export.")
