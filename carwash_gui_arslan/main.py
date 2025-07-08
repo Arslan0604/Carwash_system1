@@ -177,3 +177,7 @@ class CarWashApp:
         messagebox.showinfo("Success", f"Car entry added.\nService cost: {price}")
         self.clear_entries()
 
+    def handle_show_entries(self):
+        log = show_all_entries()
+        self.output_text.delete(1.0, tk.END)
+        self.output_text.insert(tk.END, log)
