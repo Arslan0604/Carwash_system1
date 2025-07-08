@@ -168,4 +168,8 @@ class CarWashApp:
         plate = self.plate_entry.get().strip()
         car_type = self.car_type_entry.get().strip()
         service = self.service_type.get()
+        
+        if not plate or not car_type:
+            messagebox.showwarning("Input Error", "Please fill in all fields.")
+            return
 
