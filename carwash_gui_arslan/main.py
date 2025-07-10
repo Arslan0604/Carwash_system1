@@ -203,3 +203,8 @@ class CarWashApp:
         
         daily, _, _ = calculate_earnings_by_period(start_date, end_date)
         plot_daily_earnings(daily)
+        
+    def clear_entries(self):
+        self.plate_entry.delete(0, tk.END)
+        self.car_type_entry.delete(0, tk.END)
+        self.service_type.set("Вид работ")
