@@ -200,3 +200,6 @@ class CarWashApp:
         except ValueError:
             messagebox.showerror("Date Format Error", "Please use YYYY-MM-DD format.")
             return
+        
+        daily, _, _ = calculate_earnings_by_period(start_date, end_date)
+        plot_daily_earnings(daily)
