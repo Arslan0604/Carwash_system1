@@ -208,3 +208,8 @@ class CarWashApp:
         self.plate_entry.delete(0, tk.END)
         self.car_type_entry.delete(0, tk.END)
         self.service_type.set("Вид работ")
+        
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = CarWashApp(root)
+    root.mainloop()
