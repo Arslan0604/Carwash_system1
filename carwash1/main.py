@@ -26,3 +26,11 @@ def add_car_entry(plate_number, car_type, service_type):
     with open(LOG_FILE, "a", encoding="utf-8") as file:
         file.write(entry)
     return price
+
+
+def show_all_entries():
+    try:
+        with open(LOG_FILE, "r", encoding="utf-8") as file:
+            return file.read()
+    except FileNotFoundError:
+        return "No entries found yet."
